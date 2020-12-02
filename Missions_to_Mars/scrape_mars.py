@@ -75,6 +75,7 @@ def scrape():
 
     site_info["News_Title"] = news_title
     site_info["News_Paragraph"] = news_p
+    site_info["Image_URL"] = image_url
 
 
     return site_info

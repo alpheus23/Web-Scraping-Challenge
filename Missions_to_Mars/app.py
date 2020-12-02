@@ -11,6 +11,7 @@ mongo = PyMongo(app)
 @app.route("/")
 def index():
     site_info = mongo.db.site_info.find_one()
+    print(site_info)
     return render_template("index.html", site_info=site_info)
 
 @app.route("/scrape")
