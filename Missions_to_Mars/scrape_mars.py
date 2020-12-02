@@ -39,6 +39,40 @@ def scrape():
     print('-------------------')
 
 
+    #Navigate to the next site to scrape
+    url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
+    browser.visit(url)
+
+
+    #Navigate site to reach featured image
+    browser.links.find_by_partial_text('FULL IMAGE').click()
+
+    #Wait period between next click
+    browser.is_element_present_by_text('more info', wait_time=1)
+
+    #Next click
+    browser.links.find_by_partial_text('more info').click()
+
+
+    #HTML object
+    html = browser.html
+    #Parse HTML with Beautiful Soup
+    soup = bs(html, 'html.parser')
+
+    #Breakdown search for image url
+    section_i = soup.find('figure', class_='lede')
+    link = section_i.find('a')
+    href = link['href']
+    image_url = (f'https://www.jpl.nasa.gov{href}')
+
+    #Print image url
+    print(f'Image URL: {image_url}\n')
+
+    print('-------------------')
+    print("Search complete")
+    print('-------------------')
+
+
     site_info["News_Title"] = news_title
     site_info["News_Paragraph"] = news_p
 
