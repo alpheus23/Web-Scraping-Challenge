@@ -8,7 +8,7 @@ def init_browser():
 
 def scrape():
     #Create a dictionary of scraped data
-    data_scrape = {}
+    site_info = {}
     #Initialize browser
     browser = init_browser()
 
@@ -39,8 +39,8 @@ def scrape():
     print('-------------------')
 
 
-    data_scrape["News Title"] = news_title
-    data_scrape["News paragraph"] = news_p
+    site_info["News_Title"] = news_title
+    site_info["News_Paragraph"] = news_p
 
 
-    return data_scrape
+    return site_info
