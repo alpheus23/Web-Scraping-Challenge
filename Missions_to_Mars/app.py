@@ -17,7 +17,7 @@ def index():
 def scrape():
     site_info = mongo.db.site_info
     site_info_data = scrape_mars.scrape()
-    site_info.update_one({}, site_info_data, upsert=True)
+    site_info.update_all({}, site_info_data, upsert=True)
     return redirect("/", code=302)
 
 
