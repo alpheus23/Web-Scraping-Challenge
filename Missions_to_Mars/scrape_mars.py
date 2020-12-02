@@ -25,11 +25,11 @@ def scrape():
     #Breakdown search for first article title
     search_t = soup.find('li', class_='slide')
     content_t = search_t.find('div', class_='content_title')
-    news_title = content_t.find('a').text
+    news_title = content_t.find('a').get_text()
 
     #Breakdown search for paragraph under title
     search_p = soup.find('li', class_='slide')
-    news_p = search_p.find('div', class_='article_teaser_body').text
+    news_p = search_p.find('div', class_='article_teaser_body').get_text()
 
     print(f"First Article: {news_title}\n")
     print(f"Article Paragraph: {news_p}\n")
