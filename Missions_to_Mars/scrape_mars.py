@@ -1,6 +1,7 @@
 # import necessary libraries
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
+import pandas as pd
 
 def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -73,9 +74,31 @@ def scrape():
     print('-------------------')
 
 
+    #Navigate to the next site to scrape
+    url = "https://space-facts.com/mars/"
+    browser.visit(url)
+
+
+    #Scrape and display the tables from the site
+    tables = pd.read_html(url)
+    tables
+
+
+    #Print the first table with the relevant Mars information
+    mars_table = tables[0]
+
+    #Display table
+    mars_table
+
+    #Rename columns
+    mars_table = mars_table.rename({0:"What's Measured", 1:"Units"}, axis='columns')
+
+
+    
     site_info["News_Title"] = news_title
     site_info["News_Paragraph"] = news_p
     site_info["Image_URL"] = image_url
+    site_info["Mars_Table"] = mars_table
 
 
     return site_info
