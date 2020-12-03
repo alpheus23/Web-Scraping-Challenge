@@ -75,30 +75,139 @@ def scrape():
 
 
     #Navigate to the next site to scrape
-    url = "https://space-facts.com/mars/"
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(url)
 
 
-    #Scrape and display the tables from the site
-    tables = pd.read_html(url)
-    tables
+    #Click header to navigate to image location
+    browser.links.find_by_partial_text('Cerberus Hemisphere Enhanced').click()
 
 
-    #Print the first table with the relevant Mars information
-    mars_table = tables[0]
+    #HTML object
+    html = browser.html
+    #Parse HTML with Beautiful Soup
+    soup = bs(html, 'html.parser')
 
-    #Display table
-    mars_table
+    #Obtain Hemisphere Title
+    div_t = soup.find('div', class_='content')
+    cerb_title = div_t.find('h2', class_='title').text
 
-    #Rename columns
-    mars_table = mars_table.rename({0:"What's Measured", 1:"Units"}, axis='columns')
+    print(f'Hemisphere Title: {cerb_title}\n')
 
+    #Obtain resolution for Cerberus Hemisphere
+    div_i = soup.find('img', class_='wide-image')
+    img_src = div_i['src']
+    cerb_image_url = (f'https://astrogeology.usgs.gov/{img_src}')
+
+    print(f'Hemisphere Image: {cerb_image_url}\n')
+
+    print('-------------------')
+    print("Search complete")
+    print('-------------------')
+
+
+    #Reload the previous page
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+
+    #Click header to navigate to image location
+    browser.links.find_by_partial_text('Schiaparelli Hemisphere Enhanced').click()
+
+
+    #HTML object
+    html = browser.html
+    #Parse HTML with Beautiful Soup
+    soup = bs(html, 'html.parser')
+
+    #Obtain Hemisphere Title
+    div_t = soup.find('div', class_='content')
+    schi_title = div_t.find('h2', class_='title').text
+
+    print(f'Hemisphere Title: {schi_title}\n')
+
+    #Obtain resolution for Cerberus Hemisphere
+    div_i = soup.find('img', class_='wide-image')
+    img_src = div_i['src']
+    schi_image_url = (f'https://astrogeology.usgs.gov/{img_src}')
+
+    print(f'Hemisphere Image: {schi_image_url}\n')
+
+    print('-------------------')
+    print("Search complete")
+    print('-------------------')
+
+
+    #Reload the previous page
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+
+    #Click header to navigate to image location
+    browser.links.find_by_partial_text('Syrtis Major Hemisphere Enhanced').click()
+
+
+    #HTML object
+    html = browser.html
+    #Parse HTML with Beautiful Soup
+    soup = bs(html, 'html.parser')
+
+    #Obtain Hemisphere Title
+    div_t = soup.find('div', class_='content')
+    syr_title = div_t.find('h2', class_='title').text
+
+    print(f'Hemisphere Title: {syr_title}\n')
+
+    #Obtain resolution for Cerberus Hemisphere
+    div_i = soup.find('img', class_='wide-image')
+    img_src = div_i['src']
+    syr_image_url = (f'https://astrogeology.usgs.gov/{img_src}')
+
+    print(f'Hemisphere Image: {syr_image_url}\n')
+
+    print('-------------------')
+    print("Search complete")
+    print('-------------------')
+
+
+    #Reload the previous page
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+
+    #Click header to navigate to image location
+    browser.links.find_by_partial_text('Valles Marineris Hemisphere Enhanced').click()
+
+
+    #HTML object
+    html = browser.html
+    #Parse HTML with Beautiful Soup
+    soup = bs(html, 'html.parser')
+
+    #Obtain Hemisphere Title
+    div_t = soup.find('div', class_='content')
+    val_title = div_t.find('h2', class_='title').text
+
+    print(f'Hemisphere Title: {val_title}\n')
+
+    #Obtain resolution for Cerberus Hemisphere
+    div_i = soup.find('img', class_='wide-image')
+    img_src = div_i['src']
+    val_image_url = (f'https://astrogeology.usgs.gov/{img_src}')
+
+    print(f'Hemisphere Image: {val_image_url}\n')
+
+    print('-------------------')
+    print("Search complete")
+    print('-------------------')
 
     
     site_info["News_Title"] = news_title
     site_info["News_Paragraph"] = news_p
     site_info["Image_URL"] = image_url
-    site_info["Mars_Table"] = mars_table
-
+    site_info["Cerb_URL"] = cerb_image_url
+    site_info["Schi_URL"] = schi_image_url
+    site_info["Syr_URL"] = syr_image_url
+    site_info["Val_URL"] = val_image_url
 
     return site_info

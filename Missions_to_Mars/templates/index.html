@@ -17,6 +17,8 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
+    <br>
+
     <div class="row" id="Latest-Mars-News">
       <div class="col-md-12">
         <h3 class="heading"><b>Latest Mars News</b></h3>
@@ -24,14 +26,29 @@
         <p>{{site_info.News_Paragraph}}</p>
       </div>
 
+      <br>
+
       <div class="row" id="Featured-Mars-Image">
         <h3 class='heading'>Featured Mars Image</h3>
         <img class="main image" src= {{site_info.Image_URL}}>
       </div>  
+
+      <br>
       
-      <div class="row" id="Mars-Table-Info">
-        <p>{{site_info.Mars_Table}}</p>
-      </div>
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+          <h3>Mars Hemispheres</h3>
+          <img src="{{site_info.Cerb_URL}}">
+          <img src="{{site_info.Schi_URL}}">
+          <img src="{{site_info.Syr_URL}}">
+          <img src="{{site_info.Val_URL}}"
+  
+        </div>
+        <!--Grid column-->
+
+
     </div>
 
   </div>
